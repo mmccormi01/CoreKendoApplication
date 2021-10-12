@@ -21,11 +21,11 @@ namespace CoreKendoApplicationWeb
                 return new ApplicationDbContext();
             }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-                modelBuilder.HasDefaultSchema("IDENTITYSCHEMA");
-                base.OnModelCreating(modelBuilder);
-            }
+            //protected override void OnModelCreating(ModelBuilder modelBuilder)
+            //{
+            //    modelBuilder.HasDefaultSchema("IDENTITYSCHEMA");
+            //    base.OnModelCreating(modelBuilder);
+            //}
         }
     }
 }
