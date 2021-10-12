@@ -1,0 +1,16 @@
+﻿.nopadding {
+    padding: 0;
+    margin: 15px;
+}
+
+.k-grid tr:hover {
+    background: #f1f1f1;
+}
+
+.k-grid tr.k-alt:hover {
+    background: #f1f1f1;
+}
+
+.k-grid-filter.k-state-active {
+    background-color: #7DD8AA;
+}

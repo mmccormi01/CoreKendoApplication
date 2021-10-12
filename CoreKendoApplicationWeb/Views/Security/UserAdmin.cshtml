@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using System.Web
+
+<div id="admin">
+    @*@if (User.IsInRole("app_admin"))
+        {*@
+    <script src="~/Scripts/UI/UserAdmin.js"></script>
+
+    @*}*@
+    <div id="metricsContainer"></div>
+    <div id="deleteWindow"></div>
+    <h1>User Administration</h1>
+
+    <div class="row">
+        <div id="adminTabStrip" class="col-sm-offset-1">
+            <ul>
+                <li>Users</li>
+            </ul>
+            <div>
+                <div id="securityGrid" data-get-security-users-url="@HttpUtility.UrlDecode(Url.Action("GetSecurityUsers", "api/Security"))" data-update-security-user-url="@HttpUtility.UrlDecode(Url.Action("UpdateUserRole", "api/Security"))" data-delete-security-user-url="@HttpUtility.UrlDecode(Url.Action("DeleteSecurityUser", "api/Security"))"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addUserDialog" data-search-active-directory-url="@HttpUtility.UrlDecode(Url.Action("SearchActiveDirectory", "api/Security"))" data-add-security-user-url="@HttpUtility.UrlDecode(Url.Action("AddSecurityUser", "api/Security"))">
+    <h4><label for="adQueryField">User</label></h4>
+    <input class="k-input" type="search" id="adQueryField" name="search" required validationMessage="Choose user" style="width: 100%;" placeholder="Enter EIN (u123456)..." /><span class="k-invalid-msg" data-for="search"></span>
+    <div>
+        <h4><label for="userRole">User Role</label></h4>
+        <input id="userRole" style="width: 100%;" />
+        <br />
+        <br />
+        <button id="confirmAddUser" class="k-primary">Add</button>
+        <button id="cancelAddUser">Cancel</button>
+        <span id="addFailureNotification"></span>
+    </div>
+</div>

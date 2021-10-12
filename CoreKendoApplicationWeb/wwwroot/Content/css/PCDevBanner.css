@@ -1,0 +1,33 @@
+﻿/* Environment Banner */
+.whatenv {
+    height: 40px;
+    background-color: red;
+    position: absolute;
+    top: 25px;
+    left: -60px;
+    width: 200px;
+    z-index: 100;
+    color: white;
+    line-height: 40px;
+    font-size: 1em;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px;
+    transform: rotate(-45deg);
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 767px) {
+    .whatenv {
+        height: 20px;
+        top: 18px;
+        left: -45px;
+        width: 150px;
+        line-height: 20px;
+        font-size: .75em;
+        box-shadow: rgba(0, 0, 0, 0.5) 3px 3px;
+    }
+}
+
+.hidebanner {
+    display: none;
+}

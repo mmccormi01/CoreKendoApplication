@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="maincontent">
+    <div id="helloworld"></div>
+    <br />
+
+    <!--Kendo Grid-->
+    <label id="technology" for="kendogrid">Technologies Used</label>
+    <div id="kendogrid"></div>
+    <br />
+    <!--End Kendo Grid-->
+    <!--Accordians-->
+    <label id="usage" for="accordian">Using the Template</label>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                <span class="panel-title h4">
+                    Content
+                </span>
+                <span class="glyphicons glyphicons-minus pull-right"></span>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                <span class="panel-title h4">
+                    Scripts
+                </span>
+                <span class="glyphicons glyphicons-plus pull-right"></span>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                <span class="panel-title h4">
+                    Styles
+                </span>
+                <span class="glyphicons glyphicons-plus pull-right"></span>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Accordian-->
+</div>

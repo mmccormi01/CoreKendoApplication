@@ -1,0 +1,38 @@
+[
+  {
+    "outputFileName": "wwwroot/Content/templateCss.min.css",
+    "inputFiles": [
+      "wwwroot/Content/kendo.common.min.css",
+      "wwwroot/Content/kendo.silver.min.css",
+      "wwwroot/Content/bootstrap.css",
+      "wwwroot/Content/Site.css",
+      "wwwroot/Content/css/PCBrandingStandards.css",
+      "wwwroot/Content/css/glyphicons.css",
+      "wwwroot/Content/css/PCDevBanner.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/kendoJS.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/jquery-3.1.1.js",
+      "wwwroot/Scripts/bootstrap.min.js",
+      "wwwroot/Scripts/kendo.all.min.js",
+      "wwwroot/Scripts/jszip.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/brandingJS.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/UI/Site.js",
+      "wwwroot/Scripts/UI/Default.js",
+      "wwwroot/Scripts/GoogleAnalytics.js",
+      "wwwroot/Scripts/PCBrandingStandards.js",
+      "wwwroot/Scripts/PCDevBanner.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]
