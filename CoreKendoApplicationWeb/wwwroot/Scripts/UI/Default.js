@@ -18,7 +18,7 @@ $(document).ready(function () {
 */
 
 function setHelloWorldText(){
-    var name = "World";
+    var name = "Joe";
 
     $.ajax({
         url: "/api/Default/GetHelloWorld" + "?name=" + name,

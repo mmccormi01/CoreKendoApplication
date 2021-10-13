@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove=".config\**" />
+    <Compile Remove="Pages\**" />
     <Content Remove=".config\**" />
+    <Content Remove="Pages\**" />
     <EmbeddedResource Remove=".config\**" />
+    <EmbeddedResource Remove="Pages\**" />
     <None Remove=".config\**" />
+    <None Remove="Pages\**" />
   </ItemGroup>
 
   <ItemGroup>
