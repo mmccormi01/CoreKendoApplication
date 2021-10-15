@@ -9,6 +9,14 @@
     <label id="technology" for="kendogrid">Technologies Used</label>
     <div id="kendogrid"></div>
     <br />
+    <label id="resources" for="resourcegrid">Resource Information</label>
+    <div id="confirmDeactivationDiv"></div>
+    <div id="resourcesgrid"
+         data-read-resources-url="@Url.Action("GetResources", "api/Resource")"
+         data-update-resources-url="@Url.Action("UpdateResource", "api/Resource")"
+         data-create-resources-url="@Url.Action("CreateResource", "api/Resource")"
+         data-deactivate-resources-url="@Url.Action("DeactivateResource", "api/Resource")"></div>
+    <br />
     <!--End Kendo Grid-->
     <!--Accordians-->
     <label id="usage" for="accordian">Using the Template</label>
