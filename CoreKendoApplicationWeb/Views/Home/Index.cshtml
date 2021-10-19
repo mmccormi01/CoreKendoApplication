@@ -1,74 +1,144 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using System.Web
 <div id="maincontent">
-    <div id="helloworld"></div>
-    <br />
+    @*<div id="helloworld"></div>
+        <br />*@
 
     <!--Kendo Grid-->
-    <label id="technology" for="kendogrid">Technologies Used</label>
-    <div id="kendogrid"></div>
-    <br />
-    <label id="resources" for="resourcegrid">Resource Information</label>
+    @*<label id="technology" for="kendogrid">Technologies Used</label>
+        <div id="kendogrid"></div>
+        <br />*@
+    <label id="resources" for="resourceGrid">Resource Information</label>
     <div id="confirmDeactivationDiv"></div>
-    <div id="resourcesgrid"
-         data-read-resources-url="@Url.Action("GetResources", "api/Resource")"
-         data-update-resources-url="@Url.Action("UpdateResource", "api/Resource")"
-         data-create-resources-url="@Url.Action("CreateResource", "api/Resource")"
-         data-deactivate-resources-url="@Url.Action("DeactivateResource", "api/Resource")"></div>
+    <div id="resourceGrid"
+         data-read-resources-url="@HttpUtility.UrlDecode(Url.Action("GetResources", "api/Resource"))"
+         data-update-resources-url="@HttpUtility.UrlDecode(Url.Action("UpdateResource", "api/Resource"))"
+         data-create-resources-url="@HttpUtility.UrlDecode(Url.Action("CreateResource", "api/Resource"))"
+         data-deactivate-resources-url="@HttpUtility.UrlDecode(Url.Action("DeactivateResource", "api/Resource"))"></div>
     <br />
     <!--End Kendo Grid-->
-    <!--Accordians-->
-    <label id="usage" for="accordian">Using the Template</label>
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                <span class="panel-title h4">
-                    Content
-                </span>
-                <span class="glyphicons glyphicons-minus pull-right"></span>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat.
+    <!--TEMPLATES-->
+
+    <script id="resourcedetailtemplate" type="text/kendo-tmpl">
+            <div class="resourcetabstrip">
+                <ul>
+                    <li class="k-state-active">
+                        PCR Admin Data
+                    </li>
+                    <li>
+                        Description
+                    </li>
+                    <li>
+                        Management
+                    </li>
+                    <li>
+                        Significance
+                    </li>
+                </ul>
+                <div>
+                    @*<button class="reportbtn btn btn-primary pull-right">Generate Report</button>*@
+                    @*<label for="resourcedetails" class="h3">PCR Administration</label>*@
+                    <div class="container-fluid resourcedetails">
+                        @*<div class="col-xs-5">
+                            <div class="row">
+                                <label>Resource Name</label>
+                                <input class="resourcename k-input k-textbox pull-right" />
+                                <label>Resource Type</label>
+                                <input class="k-input k-textbox pull-right" />
+                                <label>GIS ID</label>
+                                <input class="k-input k-textbox pull-right" />
+                            </div>
+                            <div class="row"><label>Project Type</label><input class="resourcetypelist pull-right" /></div>
+                        </div>*@
+                        <div class="col-xs-7">
+                            <div class="row"><label>Description</label><input class="resourcename pull-right" /></div>
+                            <div class="row"><label>Resource Class</label><input class="yeardesignated pull-right" /></div>
+                            <div class="row"><label>Primary ASM Site No.</label><input class="resourcetypelist pull-right" /></div>
+
+                            <div class="row"><label>Other Site Nos.</label><input class="designationstatus pull-right" /></div>
+                            <div class="row"><label>Parent District</label><input class="gisid pull-right" /></div>
+                            <div class="row"><label>Sensitivity Zone</label><input class="modified pull-right" /></div>
+                            @*<div class="row">
+                                <label>Fiscal Year (Closed)</label>
+                                <input class="fiscalYearInput k-input k-textbox pull-right" name="FiscalYear" hidden />
+                                <br /><b><span style="background-color:\\#ffffdb;" class="fiscalYearError k-invalid-msg small" data-for="FiscalYear" hidden><span style="color:crimson">*</span>Fiscal Year format must be \\#\\#\\#\\#-\\#\\#\\#\\# or PENDING</span></b>
+                                <p class="fiscalYearText pull-right" style="margin-top:8px;"></p>
+                            </div>*@
+                            @*<div class="row">
+                                <label>Link to Comments/Clearance Document</label>
+                                <input class="clearanceDocPath k-input k-textbox" hidden />
+                                <a id="clearanceDocLink" class="clearanceDocLink"></a>
+                                <span id="copied"></span>
+                            </div>*@
+                        </div>
+                        @*<div class="col-xs-11 text-center" style="margin-top:15px;">
+                            <small>
+                                <b>Last Modified:</b> #=kendo.toString(kendo.parseDate(ModifiedDate), 'MM-dd-yyyy h:m tt')#
+                            </small>
+                        </div>*@
+                    </div>
+                </div>
+                <div>
+                    @*<label class="h3">Description</label>
+                    <div class="taskSearch" data-search-task-index-by-wildcard-url=" @Url.Action("SearchTaskIndexByWildcard", "api/Search")">
+                    </div>
+                    <label for="resourcetask" class="h3">Project Tasks</label>*@
+                    @*<div class="resourcetaskgrid"
+                         data-read-tasks-url="@Url.Action("GetTasks", "api/Task")"
+                         data-update-task-url="@Url.Action("UpdateTask", "api/Task")"
+                         data-create-task-url="@Url.Action("CreateTask", "api/Task")"
+                         data-delete-task-url="@Url.Action("DeleteTask", "api/Task")"
+                         data-tasktype-url="@Url.Action("GetTaskTypes", "api/Task")"
+                         data-subtasktype-url="@Url.Action("GetSubtaskTypes", "api/Task")"
+                         data-consultant-url="@Url.Action("GetConsultants", "api/Task")"
+                         data-regulatory-consultation-url="@Url.Action("GetRegulatoryConsultations", "api/Task")">
+                    </div>*@
+                </div>
+                <div class="managementDiv">
+                    @*<label class="h3">Management</label>*@
+                    <div class="col-xs-8" style="float: none; margin: 0 auto;">
+                        @*<div class="row">
+                            <button type="button" class="addAgencyAssociations k-button pull-right" id="addAgencyAssociations" disabled>Add Agency <span class="k-button-icon k-icon k-i-plus"></span></button>
+                        </div>*@
+
+                        @*<div id="agencyDiv" class="row"
+                             data-get-agency-association-url="@Url.Action("GetAgencyAssociation", "api/Project")"
+                             data-add-agency-association-url="@Url.Action("AddMultipleAgencyAssociations", "api/Project")"
+                             data-delete-agency-association-url="@Url.Action("DeleteAgencyAssociation", "api/Project")"
+                             data-get-agency-types-url="@Url.Action("GetAgencyTypeDropDown", "api/Project")"
+                             data-get-agencies-url="@Url.Action("GetAgencyDropDown", "api/Project")"
+                             data-update-primary-agency-association="@Url.Action("UpdatePrimaryAgencyAssociation", "api/Project")">
+
+                            <div class="col agencyListView" style="border: 0px !important;">
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+                <div class="significanceDiv">
+                @*<label class="h3">Significance</label>*@
+                    @*<div class="col-xs-8" style="display: block; float: none; margin: 0 auto;">
+                        <label class="h3">Map Viewer</label>
+                        <a href="//agsportal.pima.gov/arcgis/apps/webappviewer/index.html?id=15634097ff5e4c2895472c4f50afb164&query=CRProjects_6243_0%2CPk_Review%2C#=GISID#" target="_blank"><span class="k-icon k-i-hyperlink-open pull-right" style="font-size:32px; color:Highlight"></span></a>
+                    </div>
+                    <iframe style="display: block; float: none; margin: 0 auto;" width="900" height="700" frameborder="0" scrolling="no" allowfullscreen src="//agsportal.pima.gov/arcgis/apps/webappviewer/index.html?id=15634097ff5e4c2895472c4f50afb164&query=CRProjects_6243_0%2CPk_Review%2C#=GISID#"></iframe>*@
                 </div>
             </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                <span class="panel-title h4">
-                    Scripts
-                </span>
-                <span class="glyphicons glyphicons-plus pull-right"></span>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat.
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                <span class="panel-title h4">
-                    Styles
-                </span>
-                <span class="glyphicons glyphicons-plus pull-right"></span>
-            </div>
-            <div id="collapse3" class="panel-collapse collapse">
-                <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat.
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Accordian-->
+    </script>
+    <script id="dropDownTemplate" type="text/x-kendo-template">
+        <span class="#: !Active ? 'k-state-disabled': ''#">
+            #: Name #
+        </span>
+    </script>
+    <script id="toolBarTemplate" type="text/x-kendo-template">
+        <a class="k-button k-button-icontext k-grid-excel" href="\#">Export to Excel</a>
+        <span class="pull-right"><a class="k-button" href="\#" onclick="return clearAllFilters(event)">Clear All <span class="k-icon k-i-filter"></span></a></span>
+    </script>
+
+    <script id="toolBarTemplateWrite" type="text/x-kendo-template">
+        <a class="k-button k-button-icontext k-grid-add" href="\#"><span class="k-icon k-i-plus"></span>New Resource</a>
+        <a class="k-button k-button-icontext k-grid-excel" href="\#">Export to Excel</a>
+        <span class="pull-right"><a class="k-button" href="\#" onclick="return clearAllFilters(event)">Clear All <span class="k-icon k-i-filter"></span></a></span>
+    </script>
 </div>

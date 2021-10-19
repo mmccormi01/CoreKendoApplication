@@ -6,8 +6,10 @@ $(document).ready(function () {
 
  /*   setHelloWorldText();*/
 
-    createKendoGrid();
+ //   createKendoGrid();
+ //   alert("...kendo grid");
     createResourceGrid();
+//    alert("..resource grid");
 });
 
 /*
@@ -18,7 +20,8 @@ $(document).ready(function () {
  START all load-independent functions
 */
 function createResourceGrid() {
-    var resourceReadUrl = $("#resourcesgrid").data("readResourcesUrl");
+    var resourceReadUrl = $("#resourceGrid").data("readResourcesUrl");
+    //alert(resourceReadUrl);
     var resourceGrid = $("#resourceGrid").kendoGrid({
         dataSource: {
             transport: {
@@ -28,18 +31,18 @@ function createResourceGrid() {
                     url: resourceReadUrl,
                     cache: false
                 },
-                update: {
-                    type: "POST",
-                    dataType: "json",
-                    url: resourcetUpdateUrl,
-                    cache: false
-                },
-                create: {
-                    type: "POST",
-                    dataType: "json",
-                    url: resourceCreateUrl,
-                    cache: false
-                }
+                //update: {
+                //    type: "POST",
+                //    dataType: "json",
+                //    url: resourceUpdateUrl,
+                //    cache: false
+                //},
+                //create: {
+                //    type: "POST",
+                //    dataType: "json",
+                //    url: resourceCreateUrl,
+                //    cache: false
+                //}
             },
             schema: {
                 model: {
@@ -76,46 +79,16 @@ function createResourceGrid() {
                                 }
                             }
                         },
-                        //ProjectEndDate: {
-                        //    validation: {
-                        //        laterEndDate: function (input) {
-                        //            input.attr("data-laterenddate-msg", "End Date must be later than Start Date.");
-                        //            var later = true;
-                        //            if (input.is("[name=ProjectEndDate]")) {
-                        //                var end = new Date(input.val());
-                        //                end.setHours(0, 0, 0, 0);
-                        //                var start = new Date($("[name=ProjectStartDate]").val());
-                        //                start.setHours(0, 0, 0, 0);
-
-                        //                if (end < start) {
-                        //                    later = false;
-                        //                }
-                        //            }
-
-                        //            return later;
-                        //        }
-                        //    },
-                        //    type: "date",
-                        //    defaultValue: null
-                        //},
-
-
-                        DocumentFilePath: {},
-
-                        //CommentsnDocument: {},
-
-                        //PrimaryAgencyType: {},
-                        //PrimaryAgency: {},
-
+                 //       DocumentFilePath: {},
                     }
                 }
             },
-            filter: applyFilters(),
-            requestEnd: function (e) {
-                if (e.type !== "read") {
-                    this.read();
-                }
-            },
+            //filter: applyFilters(),
+            //requestEnd: function (e) {
+            //    if (e.type !== "read") {
+            //        this.read();
+            //    }
+            //},
             requestStart: function (e) {
                 startLoading("#allcontent");
             }
@@ -143,11 +116,10 @@ function createResourceGrid() {
             {
                 field: "YearDesignated",
                 title: "Year Designated",
-                hidden: true
             },
             {
                 field: "ResourceTypeName",
-                title: "ResourceType",
+                title: "Resource Type",
                 sortable: true,
             },
             {
@@ -160,45 +132,45 @@ function createResourceGrid() {
                 title: "GIS ID",
                 format: "{0:n0}",
                 sortable: true,
-                filterable: {
-                    extra: false,
-                    operators: {
-                        number: {
-                            eq: "Equal to",
-                            isnull: "Empty",
-                            gte: "Greater than or equal to",
-                            lte: "Less than or equal to"
-                        }
-                    },
-                    ui: function (element) {
-                        element.kendoNumericTextBox({
-                            format: "n0",
-                            value: ""
-                        });
-                    }
-                },
-                template: function (dataItem) {
-                    var a = parseInt(dataItem.GISID);
-                    if (!isNaN(a)) {
-                        return a;
-                    }
-                    return "";
-                },
+    
+                //filterable: {
+                //    extra: false,
+                //    operators: {
+                //        number: {
+                //            eq: "Equal to",
+                //            isnull: "Empty",
+                //            gte: "Greater than or equal to",
+                //            lte: "Less than or equal to"
+                //        }
+                //    },
+                //    ui: function (element) {
+                //        element.kendoNumericTextBox({
+                //            format: "n0",
+                //            value: ""
+                //        });
+                //    }
+                //},
+                //template: function (dataItem) {
+                //    var a = parseInt(dataItem.GISID);
+                //    if (!isNaN(a)) {
+                //        return a;
+                //    }
+                //    return "";
+                //},
                 editable: function (dataItem) {
                     return ($("#userName").data("admin") === "True");
                 },
-                editor: function (container, options) {
-                    var input = $("<input />");
-                    input.attr("name", options.field);
-                    input.appendTo(container);
-                    input.kendoNumericTextBox({
-                        value: "",
-                        format: "0",
-                        spinners: false
-                    });
-                }
+                //editor: function (container, options) {
+                //    var input = $("<input />");
+                //    input.attr("name", options.field);
+                //    input.appendTo(container);
+                //    input.kendoNumericTextBox({
+                //        value: "",
+                //        format: "0",
+                //        spinners: false
+                //    });
+                //}
             },
-
             {
                 field: "ModifiedDate",
                 title: "Modified",
@@ -211,53 +183,134 @@ function createResourceGrid() {
                 editable: false,
                 width: 90
             },
-
         ],
         toolbar: [
-            {
-                name: "sync",
-                text: "Sync",
-                className: "k-grid-sync-changes",
-                imageClass: "k-icon ob-only-icon k-i-tick"
-            }
+            { template: kendo.template($("#toolBarTemplateWrite").html()) }
         ],
-
-        sortable: true,
-        editable: true,
-        navigatable: true,
-        selectable: false,
+        autoBind: false,
         filterable: true,
-        pageable: {
-            input: true,
-            numeric: true
-        }
-    });
-}
+        scrollable: false,
+        sortable: true,
+        dataBound: onDataBound,
+        detailTemplate: kendo.template($("#resourcedetailtemplate").html()),
 
-function createKendoGrid() {
+        detailInit: function (element) {
+            var ID = element.data.id;
+            var resourceId = element.data.ResourceId.toString().trim().toLowerCase();
+            var detailRow = element.detailRow;
+            detailRow.find(".resourcename")[0].id = "resourcename" + resourceId;
 
-    $("#kendogrid").kendoGrid({
-        dataSource: [
-                { technology: "Kendo UI", resource: "http://docs.telerik.com/kendo-ui/api/javascript/class" },
-                { technology: "Bootstrap", resource: "https://www.w3schools.com/bootstrap/" },
-                { technology: "Entity Framework Core", resource: "https://docs.microsoft.com/en-us/ef/" },
-                { technology: "Serilog", resource: "https://serilog.net/" },
-                { technology: "Git", resource: "https://git-scm.com/about" },
-                { technology: "", resource: "" }
-        ],
-        columns: [
-            {
-                field: "technology",
-                title: "Technology"
-            },
-            {
-                field: "resource",
-                title: "Resource"
+            if ((resourceId !== null) && (resourceId !== "")) {
+
+                $("#resourcename" + resourceId).val(element.data.ResourceName);
             }
-        ]
+            detailRow.find(".resourcetabstrip")[0].id = "resourcetabstrip" + resourceId;
+            $("#resourcetabstrip" + resourceId).kendoTabStrip({
+                dataTextField: "Name"
+            });
+        },
+        edit: function (e) {
+            e.sender.expandRow(e.container);
+            var resourceId = e.model.ResourceId.toString().trim().toLowerCase();
+           // toggleEditAgencies(resourceId);
+            //setTimeout(function () {
+            //    $("button[value='" + resourceId + "']").prop('disabled', true);
+            //    $("#addAgencyAssociations" + resourceId)[0].disabled = false;
+            //}, 800);
+            var tabStrip = $("#resourcetabstrip" + resourceId).data("kendoTabStrip");
+
+            tabStrip.select(0);
+            tabStrip.disable(tabStrip.tabGroup.children().eq(1));
+            tabStrip.disable(tabStrip.tabGroup.children().eq(2));
+            tabStrip.disable(tabStrip.tabGroup.children().eq(3));
+
+            //$("#projecttypelist" + projectID).data("kendoDropDownList").enable(true);
+            //$("#projectregcon" + projectID).data("kendoDropDownList").enable(true);
+            //$("#projectpath" + projectID).removeAttr("hidden");
+            //$(".projectlink" + projectID).hide();
+            //$("#projectnotes" + projectID).removeAttr("readonly");
+            //$("#fiscalYearInput" + projectID).removeAttr("hidden");
+            //$("#fiscalYearText" + projectID).hide();
+            //$("#clearanceDocPath" + projectID).removeAttr("hidden");
+            //$(".clearanceDocLink" + projectID).hide();
+            //$("#complianceLevel" + projectID).data("kendoDropDownList").enable(true);
+            //$("#sponsor" + projectID).data("kendoDropDownList").enable(true);
+            //$("#countyDepartment" + projectID).data("kendoDropDownList").enable(true);
+
+            $("tr[data-uid='" + e.model.uid + "'] .k-hierarchy-cell").html("");
+        },
     });
+
+    var resourceDataSource = resourceGrid.data("kendoGrid").dataSource;
+  //  alert(JSON.stringify(resourceDataSource));
+
+
+    //Populate all dataSources on page load in sequence instead of while navigating the grid and filter grid data.
+    resourceDataSource.read();
+    //.then(function () {
+    //    if (projectDataSource.total() == 0) {
+    //        projectDataSource.filter([{ field: "Completed", operator: "eq", value: "True" }]);
+    //    }
+
+    //    typeDataSource.read().then(function () {
+    //        managerDataSource.read();
+    //    });
+    //});
+}
+function onDetailInit(element) {
+
+    //var ID = element.data.id;
+    //var resourceId = element.data.resourceID.toString().trim().toLowerCase();
+    //var detailRow = element.detailRow;
+    ////var notEditing = (element.sender._editContainer === null) || (element.sender._editContainer === undefined);
+    //var resourceName = element.data.ResourceName;
+    //alert(resourceName);
+    //alert(resourceId);
+    //detailRow.find(".resourcetabstrip")[0].id = "resourcetabstrip" + resourceId;
+    //detailRow.find(".resourcetabstrip").kendoTabStrip({
+    //    dataTextField: "Name"
+    //});
+    alert("HIT2");
 }
 
+function toggleEditAgencies(projectID) {
+    setTimeout(function () {
+        var agencyRadios = $("input[type='radio'][name='" + projectID + "']");
+        for (var i = 0; i < agencyRadios.length; i++) {
+            agencyRadios[i].disabled = false;
+        }
+        var agencyDeleteButtons = $('button[name="' + projectID + '"]');
+        for (var i = 0; i < agencyDeleteButtons.length; i++) {
+            agencyDeleteButtons[i].disabled = false;
+        }
+    }, 800);
+}
+
+function onDataBound(e) {
+
+    var grid = e.sender;
+
+    // Grab the value of projectId from the query string
+    var resourceId = getParameterByName("resourceId");
+    //alert("HIT");
+    //if (resourceId != null) {
+    //    // disable existing grid filters
+    //    //grid.sender.dataSource.filter = [];
+
+    //    // select that row in the grid
+    //    var item = grid.dataSource.get(resourceId);
+    //    var tr = $("[data-uid='" + item.uid + "']", grid.tbody);
+    //    alert(tr);
+    //    grid.select(tr);
+    //}
+
+    //stopLoading("#allcontent");
+}
+
+function getParameterByName(queryParamName) {
+    var match = RegExp('[?&]' + queryParamName + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
 /*
  END all load-independent functions
 */

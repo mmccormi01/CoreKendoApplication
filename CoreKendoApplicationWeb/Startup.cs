@@ -85,6 +85,7 @@ namespace CoreKendoApplicationWeb
             services.AddDirectoryBrowser();
             services.AddMvc()
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+            services.AddMvcCore();
 
             services.AddControllersWithViews();
         }
@@ -104,6 +105,10 @@ namespace CoreKendoApplicationWeb
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
             //app.UseEndpoints(endpoints =>
             //{

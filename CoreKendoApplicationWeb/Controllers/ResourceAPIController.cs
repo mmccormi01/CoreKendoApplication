@@ -6,32 +6,31 @@ using static CoreKendoApplicationWeb.Identity.HttpAuthRoleGroupConstants;
 
 namespace CoreKendoApplicationWeb
 {
-    [Route("api/Default")]
-    [ApiController]
-    public class ResourceAPIController : ControllerBase
-    {
-        public ResourceAPIController()
-        {
-            LogHelper.Debug("Instantiating DefaultAPIController");
-        }
+    //[Route("api/Default")]
+    //[ApiController]
+    //public class ResourceAPIController : ControllerBase
+    //{
+    //    public ResourceAPIController()
+    //    {
+    //        LogHelper.Debug("Instantiating DefaultAPIController");
+    //    }
 
-        //[HttpGet]
-        //[Route("GetHelloWorld")]
-        //public string GetHelloWorld(string name)
-        //{
-        //    LogHelper.Debug("Name is " + name);
+    //    [HttpGet]
+    //    [Route("GetHelloWorld")]
+    //    public string GetHelloWorld(string name)
+    //    {
+    //        LogHelper.Debug("Name is " + name);
 
-        //    ResourceService defaultService = new ResourceService();
-        //    return defaultService.GetHelloWorld(name);
-        //}
-    }
+    //        ResourceService defaultService = new ResourceService();
+    //        return "Anything..."; // defaultService.GetHelloWorld(name);
+    //    }
+    //}
 
     [Route("api/Resource")]
     [ApiController]
     public class ResourceApiController : ControllerBase
     {
         //private static readonly log4net.ILog Logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         //private readonly AppAdminService appAdminService = new AppAdminService();
         //private readonly ProjectService projectService = new ProjectService();
         //private readonly AgencyService agencyService = new AgencyService();
@@ -45,7 +44,7 @@ namespace CoreKendoApplicationWeb
 
         [HttpGet]
         [Route("GetResources")]
-        [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
+    //    [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
         public List<ResourceRow> GetResources()
         {
             LogHelper.Debug("Requesting Resource Row Data from Service.");

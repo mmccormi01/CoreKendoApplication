@@ -13,22 +13,23 @@ namespace CoreKendoApplicationService
 
             using (var context = new Context())
             {
-                ResourceList = context.Resources
-                    .Join(context.ResourceTypes, p => p.ResourceTypeId, t => t.ResourceTypeId, (p, t) => new { Resources = p, ResourceTypes = t })
-                    //.Where(w => w.Projects.Active)
-                    .Select(s => new ResourceRow()
+                ResourceList = context.Resources                                                                                //r = Resources
+                    .Join(context.ResourceTypes, r => r.ResourceTypeId, t => t.ResourceTypeId, (r, t) => new { r, t })          //t = ResourceTypes
+                    .Join(context.DesignationStatuses, rt => rt.r.DesignationStatusId, s => s.DesignationStatusId, (rt, s) => new { rt.r, rt.t, s }) //s = DesignationStatuses
+                    .Select(rts => new ResourceRow()
                     {
-                        ResouceId = s.Resources.ResourceId,
-                        ResourceName = s.Resources.ResourceName ?? "",          
-                        GISID = s.Resources.GISId,
-                        LastModified = (s.Resources.ModifiedDate == null).ToString(),
-                        ResourceTypeId = s.Resources.ResourceTypeId,
-                      //  DocumentFilePath = s.Projects.DocumentFilePath ?? ""
-
+                        ResourceId = rts.r.ResourceId,
+                        ResourceName = rts.r.ResourceName,
+                        ResourceDescription = rts.r.ResourceDescription,
+                        YearDesignated = rts.r.YearDesignated,
+                        ResourceTypeName = rts.t.ResourceTypeName,
+                        DesignationStatusName = rts.s.DesignationStatusName,
+                        GISId = rts.r.GISId ?? 0,
+                        ModifiedDate = rts.r.ModifiedDate != null ? rts.r.ModifiedDate : new System.DateTime(1800, 1, 1),
                     })
-                    .OrderByDescending(o => o.ResourceName)
-                    .ToList();
+                    .OrderBy(o => o.ResourceName).ToList();
             }
+
 
             return ResourceList;
         }
