@@ -24,6 +24,13 @@ namespace CoreKendoApplicationService.EntityModels
 
   //      [Column("ModifiedDate")]
         public DateTime ModifiedDate { get; set; }
+
+
+        public string PrimaryASMSiteNumber { get; set; }
+        public int SecondarySitesId { get; set; }
+        public int ParentDistrictId { get; set; }
+        public int ParentSensitivityZoneId { get; set; }
+
     }
 
 }

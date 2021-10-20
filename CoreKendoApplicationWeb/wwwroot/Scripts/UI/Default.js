@@ -198,11 +198,15 @@ function createResourceGrid() {
             var ID = element.data.id;
             var resourceId = element.data.ResourceId.toString().trim().toLowerCase();
             var detailRow = element.detailRow;
-            detailRow.find(".resourcename")[0].id = "resourcename" + resourceId;
+            detailRow.find(".resourcedesc")[0].id = "resourcedesc" + resourceId;
+            detailRow.find(".resourceclass")[0].id = "resourceclass" + resourceId;
+            detailRow.find(".primarysite")[0].id = "primarysite" + resourceId;
 
             if ((resourceId !== null) && (resourceId !== "")) {
 
-                $("#resourcename" + resourceId).val(element.data.ResourceName);
+                $("#resourcedesc" + resourceId).val(element.data.ResourceDescription);
+                $("#resourceclass" + resourceId).val(element.data.ResourceClass);
+                $("#primarysite" + resourceId).val(element.data.PrimaryASMSite);
             }
             detailRow.find(".resourcetabstrip")[0].id = "resourcetabstrip" + resourceId;
             $("#resourcetabstrip" + resourceId).kendoTabStrip({

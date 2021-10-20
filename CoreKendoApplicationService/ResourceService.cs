@@ -20,12 +20,19 @@ namespace CoreKendoApplicationService
                     {
                         ResourceId = rts.r.ResourceId,
                         ResourceName = rts.r.ResourceName,
-                        ResourceDescription = rts.r.ResourceDescription,
                         YearDesignated = rts.r.YearDesignated,
                         ResourceTypeName = rts.t.ResourceTypeName,
                         DesignationStatusName = rts.s.DesignationStatusName,
                         GISId = rts.r.GISId ?? 0,
                         ModifiedDate = rts.r.ModifiedDate != null ? rts.r.ModifiedDate : new System.DateTime(1800, 1, 1),
+
+                        ResourceDescription = rts.r.ResourceDescription,
+                        ResourceClass = rts.r.ResourceClassId.ToString(),
+                        PrimaryASMSite = rts.r.PrimaryASMSiteNumber,
+                        OtherSiteNos = rts.r.SecondarySitesId.ToString(),
+                        ParentDistrict = rts.r.ParentDistrictId.ToString(),
+                        SensitivityZone = rts.r.ParentSensitivityZoneId.ToString()
+
                     })
                     .OrderBy(o => o.ResourceName).ToList();
             }
