@@ -21,7 +21,7 @@ namespace CoreKendoApplicationService
 
         //Detail Fields
         public string ResourceDescription { get; set; }
-        public string ResourceClass { get; set; }
+        public int? ResourceClassId { get; set; }
         public string PrimaryASMSite { get; set; }
         public string OtherSiteNos { get; set; }
         public string ParentDistrict { get; set; }

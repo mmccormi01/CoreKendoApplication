@@ -21,7 +21,20 @@ $(document).ready(function () {
 */
 function createResourceGrid() {
     var resourceReadUrl = $("#resourceGrid").data("readResourcesUrl");
-    //alert(resourceReadUrl);
+    var classesUrl = $("#resourceGrid").data("readClassesUrl");
+
+   // alert(classesUrl);
+    var classDataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                type: "GET",
+                dataType: "json",
+                url: classesUrl,
+                cache: false
+            }
+        }
+    });
+
     var resourceGrid = $("#resourceGrid").kendoGrid({
         dataSource: {
             transport: {
@@ -79,7 +92,7 @@ function createResourceGrid() {
                                 }
                             }
                         },
-                 //       DocumentFilePath: {},
+                        //       DocumentFilePath: {},
                     }
                 }
             },
@@ -132,7 +145,7 @@ function createResourceGrid() {
                 title: "GIS ID",
                 format: "{0:n0}",
                 sortable: true,
-    
+
                 //filterable: {
                 //    extra: false,
                 //    operators: {
@@ -199,24 +212,43 @@ function createResourceGrid() {
             var resourceId = element.data.ResourceId.toString().trim().toLowerCase();
             var detailRow = element.detailRow;
             detailRow.find(".resourcedesc")[0].id = "resourcedesc" + resourceId;
-            detailRow.find(".resourceclass")[0].id = "resourceclass" + resourceId;
+            detailRow.find(".resourceclasslist")[0].id = "resourceclasslist" + resourceId;
             detailRow.find(".primarysite")[0].id = "primarysite" + resourceId;
 
             if ((resourceId !== null) && (resourceId !== "")) {
 
                 $("#resourcedesc" + resourceId).val(element.data.ResourceDescription);
-                $("#resourceclass" + resourceId).val(element.data.ResourceClass);
+                $("#resourceclasslist" + resourceId).val(element.data.ResourceClassName);
                 $("#primarysite" + resourceId).val(element.data.PrimaryASMSite);
             }
             detailRow.find(".resourcetabstrip")[0].id = "resourcetabstrip" + resourceId;
             $("#resourcetabstrip" + resourceId).kendoTabStrip({
                 dataTextField: "Name"
             });
+
+
+            detailRow.find(".resourceclasslist").kendoDropDownList({
+                dataSource: classDataSource,
+                dataTextField: "Name",
+                dataValueField: "Id",
+                value: element.data.ResourceClassId,
+                enable: true,
+                select: function (e) {
+                    if (!e.dataItem.Active) {
+                        removeFromDropDown("#resourceclasslist" + resourceId, e.dataItem.Id);
+                        e.preventDefault();
+                    }
+                },
+                dataBound: function (e) {
+                    removeFromDropDown("#resourceclasslist" + resourceId);
+                },
+                template: kendo.template($("#dropDownTemplate").html())
+            });
         },
         edit: function (e) {
             e.sender.expandRow(e.container);
             var resourceId = e.model.ResourceId.toString().trim().toLowerCase();
-           // toggleEditAgencies(resourceId);
+            // toggleEditAgencies(resourceId);
             //setTimeout(function () {
             //    $("button[value='" + resourceId + "']").prop('disabled', true);
             //    $("#addAgencyAssociations" + resourceId)[0].disabled = false;
@@ -228,7 +260,7 @@ function createResourceGrid() {
             tabStrip.disable(tabStrip.tabGroup.children().eq(2));
             tabStrip.disable(tabStrip.tabGroup.children().eq(3));
 
-            //$("#projecttypelist" + projectID).data("kendoDropDownList").enable(true);
+            $("#resourceclasslist" + resourceId).data("kendoDropDownList").enable(true);
             //$("#projectregcon" + projectID).data("kendoDropDownList").enable(true);
             //$("#projectpath" + projectID).removeAttr("hidden");
             //$(".projectlink" + projectID).hide();
@@ -246,36 +278,26 @@ function createResourceGrid() {
     });
 
     var resourceDataSource = resourceGrid.data("kendoGrid").dataSource;
-  //  alert(JSON.stringify(resourceDataSource));
+     // alert(JSON.stringify(resourceDataSource));
 
 
     //Populate all dataSources on page load in sequence instead of while navigating the grid and filter grid data.
+     alert("hit read...");
+    classDataSource.read();
+    // alert("hit read success...");
     resourceDataSource.read();
-    //.then(function () {
-    //    if (projectDataSource.total() == 0) {
-    //        projectDataSource.filter([{ field: "Completed", operator: "eq", value: "True" }]);
-    //    }
+        //.then(function () {
+        //    //if (resourceDataSource.total() == 0) {
+        //    //    resourceDataSource.filter([{ field: "Completed", operator: "eq", value: "True" }]);
+        //    //}
+        //    //alert("hit read...");
+        //    //classDataSource.read();
+        //    //.then(function () {
+        //    //    managerDataSource.read();
+        //});
 
-    //    typeDataSource.read().then(function () {
-    //        managerDataSource.read();
-    //    });
-    //});
 }
-function onDetailInit(element) {
 
-    //var ID = element.data.id;
-    //var resourceId = element.data.resourceID.toString().trim().toLowerCase();
-    //var detailRow = element.detailRow;
-    ////var notEditing = (element.sender._editContainer === null) || (element.sender._editContainer === undefined);
-    //var resourceName = element.data.ResourceName;
-    //alert(resourceName);
-    //alert(resourceId);
-    //detailRow.find(".resourcetabstrip")[0].id = "resourcetabstrip" + resourceId;
-    //detailRow.find(".resourcetabstrip").kendoTabStrip({
-    //    dataTextField: "Name"
-    //});
-    alert("HIT2");
-}
 
 function toggleEditAgencies(projectID) {
     setTimeout(function () {

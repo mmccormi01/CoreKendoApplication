@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CoreKendoApplicationService.EntityModels;
 
 namespace CoreKendoApplicationService
 {
@@ -27,7 +28,7 @@ namespace CoreKendoApplicationService
                         ModifiedDate = rts.r.ModifiedDate != null ? rts.r.ModifiedDate : new System.DateTime(1800, 1, 1),
 
                         ResourceDescription = rts.r.ResourceDescription,
-                        ResourceClass = rts.r.ResourceClassId.ToString(),
+                        ResourceClassId = rts.r.ResourceClassId,
                         PrimaryASMSite = rts.r.PrimaryASMSiteNumber,
                         OtherSiteNos = rts.r.SecondarySitesId.ToString(),
                         ParentDistrict = rts.r.ParentDistrictId.ToString(),
@@ -37,6 +38,34 @@ namespace CoreKendoApplicationService
                     .OrderBy(o => o.ResourceName).ToList();
             }
 
+
+            return ResourceList;
+        }
+        public List<ResourceClass> GetResourceClasses()
+        {
+            LogHelper.Debug("GetResourcesClasses");
+
+            List<ResourceClass> ResourceList = new List<ResourceClass>();
+
+            ResourceList.Add(new ResourceClass
+            {
+                Id = 3,
+                Name = "something",
+                ResourceClassDescription = "description"
+            });
+            ResourceList.Add(new ResourceClass
+            {
+                Id = 5,
+                Name = "something completely different",
+                ResourceClassDescription = "and now for something completely different..."
+            });
+
+            ResourceList.Add(new ResourceClass
+            {
+                Id = 2,
+                Name = "somethingelse",
+                ResourceClassDescription = "another description"
+            });
 
             return ResourceList;
         }

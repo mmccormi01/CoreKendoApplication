@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using CoreKendoApplicationService;
+using CoreKendoApplicationService.EntityModels;
 using CoreKendoApplicationWeb.Identity;
 using static CoreKendoApplicationWeb.Identity.HttpAuthRoleGroupConstants;
 
@@ -80,6 +81,16 @@ namespace CoreKendoApplicationWeb
             LogHelper.Debug("Deactivating Resource Row Data from Grid (Setting to inactive).");
 
             //ResourceService.SetResourceActiveStatus(ResourceID, User.Identity.Name, false);
+        }
+
+        [HttpGet]
+        [Route("GetResourceClasses")]
+   //     [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
+        public List<ResourceClass> GetResourceClasses()
+        {
+            LogHelper.Debug("Getting Resource Classes dropdown.");
+
+            return ResourceService.GetResourceClasses();
         }
     }
 }
