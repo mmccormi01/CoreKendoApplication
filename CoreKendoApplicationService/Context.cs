@@ -27,6 +27,8 @@ namespace CoreKendoApplicationService
         }
 
         public DbSet<Resource> Resources { get; set; }
+
+        public DbSet<ResourceClass> ResourceClasses { get; set; }
         public DbSet<ResourceType> ResourceTypes { get; set; }
         public DbSet<DesignationStatus> DesignationStatuses { get; set; }
     }

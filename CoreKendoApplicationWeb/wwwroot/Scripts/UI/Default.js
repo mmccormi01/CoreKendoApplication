@@ -233,11 +233,12 @@ function createResourceGrid() {
                 dataValueField: "Id",
                 value: element.data.ResourceClassId,
                 enable: true,
+                edit: true,
                 select: function (e) {
-                    if (!e.dataItem.Active) {
-                        removeFromDropDown("#resourceclasslist" + resourceId, e.dataItem.Id);
-                        e.preventDefault();
-                    }
+                    //if (!e.dataItem.Active) {
+                    //    removeFromDropDown("#resourceclasslist" + resourceId, e.dataItem.Id);
+                    //    e.preventDefault();
+                    //}
                 },
                 dataBound: function (e) {
                     removeFromDropDown("#resourceclasslist" + resourceId);
@@ -282,7 +283,7 @@ function createResourceGrid() {
 
 
     //Populate all dataSources on page load in sequence instead of while navigating the grid and filter grid data.
-     alert("hit read...");
+     //alert("hit read...");
     classDataSource.read();
     // alert("hit read success...");
     resourceDataSource.read();

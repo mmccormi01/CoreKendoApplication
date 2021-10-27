@@ -1,0 +1,6 @@
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationSQL\bin\Debug\CoreKendoApplicationSQL.dacpac
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationSQL\bin\Debug\CoreKendoApplicationSQL.dll
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationSQL\bin\Debug\CoreKendoApplicationSQL.pdb
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationSQL\obj\Debug\CoreKendoApplicationSQL.sqlproj.AssemblyReference.cache
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationSQL\obj\Debug\CoreKendoApplicationSQL.dll
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationSQL\obj\Debug\CoreKendoApplicationSQL.pdb

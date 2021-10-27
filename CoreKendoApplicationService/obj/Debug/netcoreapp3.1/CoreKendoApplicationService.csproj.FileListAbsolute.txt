@@ -1,0 +1,12 @@
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\bin\Debug\netcoreapp3.1\CoreKendoApplicationService.deps.json
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\bin\Debug\netcoreapp3.1\CoreKendoApplicationService.runtimeconfig.json
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\bin\Debug\netcoreapp3.1\CoreKendoApplicationService.runtimeconfig.dev.json
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\bin\Debug\netcoreapp3.1\CoreKendoApplicationService.dll
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\bin\Debug\netcoreapp3.1\CoreKendoApplicationService.pdb
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\obj\Debug\netcoreapp3.1\CoreKendoApplicationService.csproj.AssemblyReference.cache
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\obj\Debug\netcoreapp3.1\CoreKendoApplicationService.AssemblyInfoInputs.cache
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\obj\Debug\netcoreapp3.1\CoreKendoApplicationService.AssemblyInfo.cs
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\obj\Debug\netcoreapp3.1\CoreKendoApplicationService.csproj.CoreCompileInputs.cache
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\obj\Debug\netcoreapp3.1\CoreKendoApplicationService.dll
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\obj\Debug\netcoreapp3.1\CoreKendoApplicationService.pdb
+E:\Wip\Professional Development\CoreKendoApplication\CoreKendoApplicationService\obj\Debug\netcoreapp3.1\CoreKendoApplicationService.genruntimeconfig.cache

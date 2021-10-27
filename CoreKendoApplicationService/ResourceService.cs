@@ -41,33 +41,78 @@ namespace CoreKendoApplicationService
 
             return ResourceList;
         }
+
+
         public List<ResourceClass> GetResourceClasses()
         {
-            LogHelper.Debug("GetResourcesClasses");
+            List<ResourceClass> ResourceClasses;
 
-            List<ResourceClass> ResourceList = new List<ResourceClass>();
-
-            ResourceList.Add(new ResourceClass
+            using (var context = new Context())
             {
-                Id = 3,
-                Name = "something",
-                ResourceClassDescription = "description"
-            });
-            ResourceList.Add(new ResourceClass
-            {
-                Id = 5,
-                Name = "something completely different",
-                ResourceClassDescription = "and now for something completely different..."
-            });
+                ResourceClasses = context.ResourceClasses.OrderByDescending(o => o.Id).ToList();
+            }
 
-            ResourceList.Add(new ResourceClass
-            {
-                Id = 2,
-                Name = "somethingelse",
-                ResourceClassDescription = "another description"
-            });
-
-            return ResourceList;
+            return ResourceClasses;
         }
+
+        //public List<ResourceClass> GetResourceClasses()
+        //{
+        //    LogHelper.Debug("GetResourcesClasses");
+
+        //    List<ResourceClass> ClasssList;
+        //    using (var context = new Context())
+        //    {
+        //        ClasssList = context.ResourceClasses
+        //           .Select(s => new ResourceClass
+        //           {
+        //               Id = s.Id,
+        //               Name = s.Name
+        //           })
+        //           .ToList();
+        //    }
+        //    return ClasssList;
+        //}
+
+        //public List<ResourceClass> GetResourceClasses()
+        //{
+        //    List<ResourceClass> ClasssList;
+
+        //    using (var context = new Context())
+        //    {
+        //        ClasssList = (from c in context.ResourceClasses
+        //                      select new ResourceClass
+        //                      {
+        //                          Id = c.Id,
+        //                          Name = c.Name
+        //                      }).ToList();
+        //    }
+        //    return ClasssList;
+        //}
+
+        //public List<ResourceClass> GetResourceClasses()
+        //{
+        //    LogHelper.Debug("GetResourcesClasses");
+
+        //    List<ResourceClass> ResourceList = new List<ResourceClass>();
+
+        //    ResourceList.Add(new ResourceClass
+        //    {
+        //        Id = 3,
+        //        Name = "something",
+        //    });
+        //    ResourceList.Add(new ResourceClass
+        //    {
+        //        Id = 5,
+        //        Name = "something completely different",
+        //    });
+
+        //    ResourceList.Add(new ResourceClass
+        //    {
+        //        Id = 2,
+        //        Name = "somethingelse",
+        //    });
+
+        //    return ResourceList;
+        //}
     }
 }
