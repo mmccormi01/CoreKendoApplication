@@ -14,9 +14,9 @@
     <div id="confirmDeactivationDiv"></div>
     <div id="resourceGrid"
          data-read-resources-url="@HttpUtility.UrlDecode(Url.Action("GetResources", "api/Resource"))"
-         data-update-resources-url="@HttpUtility.UrlDecode(Url.Action("UpdateResource", "api/Resource"))"
-         data-create-resources-url="@HttpUtility.UrlDecode(Url.Action("CreateResource", "api/Resource"))"
-         data-deactivate-resources-url="@HttpUtility.UrlDecode(Url.Action("DeactivateResource", "api/Resource"))"
+         data-update-resource-url="@HttpUtility.UrlDecode(Url.Action("UpdateResource", "api/Resource"))"
+         data-create-resource-url="@HttpUtility.UrlDecode(Url.Action("CreateResource", "api/Resource"))"
+         data-deactivate-resource-url="@HttpUtility.UrlDecode(Url.Action("DeactivateResource", "api/Resource"))"
          data-read-classes-url="@HttpUtility.UrlDecode(Url.Action("GetResourceClasses", "api/Resource"))"></div>
     <br />
     <!--End Kendo Grid-->
@@ -55,7 +55,7 @@
                         </div>*@
                         <div class="col-xs-7">
                             <div class="row"><label>Description</label><input class="resourcedesc pull-right" /></div>
-                            <div class="row"><label>Resource Class</label><input class="resourceclasslist pull-right" /></div>
+                            <div class="row"><label>Resource Class(es)</label><input class="resourceclasslist pull-right" /></div>
                             <div class="row"><label>Primary ASM Site No.</label><input class="primarysite pull-right" /></div>
 
                             @*<div class="row"><label>Other Site Nos.</label><input class="primarysite pull-right" /></div>

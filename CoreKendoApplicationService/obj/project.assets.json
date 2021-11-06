@@ -6715,11 +6715,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj",
+      "projectUniqueName": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj",
       "projectName": "CoreKendoApplicationService",
-      "projectPath": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj",
+      "projectPath": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj",
       "packagesPath": "C:\\Users\\u142440\\.nuget\\packages\\",
-      "outputPath": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationService\\obj\\",
+      "outputPath": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",

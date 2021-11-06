@@ -57,7 +57,7 @@ namespace CoreKendoApplicationWeb.Identity
                     isAuthorized = true;
                 }
             }
-
+          //  AccessLevel = "admin";
             return isAuthorized;
         }
 

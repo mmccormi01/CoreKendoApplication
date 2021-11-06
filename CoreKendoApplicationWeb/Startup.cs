@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -71,45 +72,55 @@ namespace CoreKendoApplicationWeb
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
-
             //services.AddAuthentication("CookieAuthentication")
             //.AddCookie("CookieAuthentication", config =>
             //{
             //    config.Cookie.Name = "UserLoginCookie";
             //    config.LoginPath = "/Login/UserLogin";
             //});
-            //services.AddAuthorization();
+            //services.AddControllersWithViews(options =>
+            //{
+            //    var policy = new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()
+            //        .RequireAuthenticatedUser()
+            //        .Build();
+            //    options.Filters.Add(new AuthorizeFilter(policy));
+            //});
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            services.AddAuthorization();
 
             //services.AddRazorPages();
             services.AddDirectoryBrowser();
+
+            // need this as MVC serializes JSON with camel case names by default
             services.AddMvc()
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
-            services.AddMvcCore();
-
+            //services.AddMvcCore();
+            
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IServiceProvider isp)
         {
-            //app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
+          //  app.UseMvc();
+            app.UseAuthentication();  //this one is always first in this order before app.UseEndpoints
+            app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+
+            //app.UseEndpoints(endpoints =>   //alternatives
+            //{
+            //    endpoints.MapControllers();
+            //});
             //app.UseEndpoints(endpoints =>
             //{
             //    endpoints.MapRazorPages();

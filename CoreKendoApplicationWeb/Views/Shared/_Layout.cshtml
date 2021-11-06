@@ -80,6 +80,10 @@
                             </ul>
                         </li>
                     </ul>
+                    @if (user != null)
+                    {
+                        <div id="userName" class="username navbar-right" data-read=@isUserReadOnly data-admin=@isUserAdmin>@user.CommonName</div>
+                    }
 
                     <ul class="nav navbar-nav navbar-right visible-sm visible-md visible-lg">
                         <li class="pull-right">

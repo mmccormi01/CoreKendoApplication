@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CoreKendoApplicationService.EntityModels
 {
     [Table("Config_DesignationStatus")]
-    internal partial class DesignationStatus
+    public partial class DesignationStatus : ReferenceType
     {
         [Key]
         [Column("DesignationStatusId")]

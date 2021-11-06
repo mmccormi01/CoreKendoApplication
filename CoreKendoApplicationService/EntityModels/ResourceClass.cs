@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CoreKendoApplicationService.EntityModels
 {
     [Table("Config_ResourceClass")]
-    public partial class ResourceClass 
+    public partial class ResourceClass : ReferenceType
     {
         [Key]
         [Column("ResourceClassId")]

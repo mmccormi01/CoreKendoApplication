@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using CoreKendoApplicationService;
 using CoreKendoApplicationService.EntityModels;
 using CoreKendoApplicationWeb.Identity;
@@ -45,28 +47,58 @@ namespace CoreKendoApplicationWeb
 
         [HttpGet]
         [Route("GetResources")]
-    //    [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
-        public List<ResourceRow> GetResources()
+        public string GetResources()
         {
             LogHelper.Debug("Requesting Resource Row Data from Service.");
+            List<ResourceRow> rows = ResourceService.GetResources();
+            //  JArray jArray = new JArray();
+            var rval = JsonConvert.SerializeObject(rows);
 
-            return ResourceService.GetResources();
+            //string rval = ConvertListToJson(rows);
+            //   jArray.Add(2);
+            //JObject jObj = new JObject(
+            //    new JProperty("ResourceId", 1),
+            //    new JProperty("ResourceName", "49er's Site"),
+            //    new JProperty("YearDesignated", 2004),
+            //    new JProperty("ResourceTypeName", "Building"),
+            //    new JProperty("ResourceClasses", jArray),
+
+            //    new JProperty("DesignationStatusName", null),
+            //    new JProperty("GISId", 2564),
+            //    new JProperty("ModifiedDate", "2021-09-01T00:00:00"),
+            //    new JProperty("ResourceDescription", "49er's Site Description"),
+            //    new JProperty("PrimaryASMSite", "AZ BB:14:17(ASM)"),
+            //    new JProperty("ParentDistrict", null),
+            //    new JProperty("SensitivityZone", null));
+
+            return rval;  //kendo only likes flat deserialized json string
+            //return new JsonResult(JsonConvert.SerializeObject(tmp));
         }
+
+        //[AuthorizeRoles(AccessLevel = HTTP_ROLE_GROUP_ALL)]
+        //public List<ResourceRow> GetResources()
+        //{
+        //    LogHelper.Debug("Requesting Resource Row Data from Service.");
+
+        //    return ResourceService.GetResources();
+        //}
 
         [HttpPost]
         [Route("UpdateResource")]
-        [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
-        public void UpdateResource(ResourceRow ResourceRow)
+        [AuthorizeRoles(AccessLevel = HTTP_ROLE_GROUP_ALL)]
+        public IActionResult UpdateResource([FromBody] ResourceRow resourceRow)
         {
+            JObject jObj = new JObject(new JProperty("rval", "return value"));
             LogHelper.Debug("Updating Resource Row Data from Grid.");
             //ResourceRow.ModifiedBy = User.Identity.Name;
             //ResourceService.UpdateResource(ResourceRow);
-        }
 
+            return new JsonResult(jObj, null);
+        }
         [HttpPost]
         [Route("CreateResource")]
-        [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
-        public void CreateResource(ResourceRow ResourceRow)
+        [AuthorizeRoles(AccessLevel = HTTP_ROLE_GROUP_ALL)]
+        public void CreateResource(ResourceRow resourceRow)
         {
             LogHelper.Debug("Creating Resource Row Data from Grid.");
             //ResourceRow.ModifiedBy = User.Identity.Name;
@@ -75,8 +107,8 @@ namespace CoreKendoApplicationWeb
 
         [HttpGet]
         [Route("DeactivateResource")]
-        [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
-        public void DeactivateResource(int ResourceID)
+        [AuthorizeRoles(AccessLevel = HTTP_ROLE_GROUP_ALL)]
+        public void DeactivateResource(int resourceId)
         {
             LogHelper.Debug("Deactivating Resource Row Data from Grid (Setting to inactive).");
 
@@ -85,12 +117,42 @@ namespace CoreKendoApplicationWeb
 
         [HttpGet]
         [Route("GetResourceClasses")]
-   //     [AuthorizeRolesAttribute(Roles = HTTP_ROLE_GROUP_ALL)]
+        [AuthorizeRoles(AccessLevel = HTTP_ROLE_GROUP_ALL)]
         public List<ResourceClass> GetResourceClasses()
         {
             LogHelper.Debug("Getting Resource Classes dropdown.");
 
             return ResourceService.GetResourceClasses();
+        }
+
+        private string ConvertListToJson(List<ResourceRow> resourceRows)
+        {
+            //Array jArr = new JArray();
+            JObject jobj = new JObject();
+            List<string> jString = new List<string>();
+
+            foreach (ResourceRow row in resourceRows)
+            {
+
+                jobj = new JObject(
+                    new JProperty("ResourceId", row.ResourceId),
+                    new JProperty("ResourceName", row.ResourceName),
+                    new JProperty("YearDesignated", row.YearDesignated),
+                    new JProperty("ResourceTypeName", row.ResourceTypeName),
+                    new JProperty("ResourceClassId", row.ResourceClassId,
+
+                    new JProperty("DesignationStatusName", row.DesignationStatusName),
+                    new JProperty("GISId", row.GISId),
+                    new JProperty("ModifiedDate", row.ModifiedDate),
+                    new JProperty("ResourceDescription", row.ResourceDescription),
+                    new JProperty("PrimaryASMSiteNumber", row.PrimaryASMSiteNumber),
+                    new JProperty("ParentDistrictId", row.ParentDistrictId),
+                    new JProperty("ParentSensitivityZoneId", row.ParentSensitivityZoneId)));
+
+                jString.Add(jobj.ToString());
+            }
+
+            return jString.ToString();
         }
     }
 }

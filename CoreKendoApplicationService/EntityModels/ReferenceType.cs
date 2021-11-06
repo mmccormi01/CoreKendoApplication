@@ -12,13 +12,13 @@ namespace CoreKendoApplicationService.EntityModels
         [Column("Active")]
         public bool Active { get; set; }
 
-        [Required]
+//        [Required]
         [StringLength(100)]
         [Column("ModifiedBy")]
         public string ModifiedBy { get; set; }
 
-        [Required]
+//        [Required]
         [Column("ModifiedDate")]
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
     }
 }

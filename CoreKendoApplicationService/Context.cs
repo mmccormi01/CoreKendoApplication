@@ -11,7 +11,7 @@ using System.IO;
 
 namespace CoreKendoApplicationService
 {
-    internal class Context : DbContext
+    public class Context : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
