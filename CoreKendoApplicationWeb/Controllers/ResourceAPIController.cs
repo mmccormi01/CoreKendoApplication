@@ -114,17 +114,6 @@ namespace CoreKendoApplicationWeb
 
             //ResourceService.SetResourceActiveStatus(ResourceID, User.Identity.Name, false);
         }
-
-        [HttpGet]
-        [Route("GetResourceClasses")]
-        [AuthorizeRoles(AccessLevel = HTTP_ROLE_GROUP_ALL)]
-        public List<ResourceClass> GetResourceClasses()
-        {
-            LogHelper.Debug("Getting Resource Classes dropdown.");
-
-            return ResourceService.GetResourceClasses();
-        }
-
         private string ConvertListToJson(List<ResourceRow> resourceRows)
         {
             //Array jArr = new JArray();

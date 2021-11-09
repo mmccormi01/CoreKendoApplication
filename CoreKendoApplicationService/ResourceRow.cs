@@ -12,7 +12,6 @@ namespace CoreKendoApplicationService
 
         public int? YearDesignated { get; set; }
         public int? ResourceTypeId { get; set; }
-        public int? ResourceClassId { get; set; }
         public string ResourceTypeName { get; set; }
         public int? DesignationStatusId { get; set; }
         public string DesignationStatusName { get; set; }
@@ -21,6 +20,8 @@ namespace CoreKendoApplicationService
 
         //Detail Fields
         public string ResourceDescription { get; set; }
+        public int? ResourceClassId { get; set; }
+        public string ResourceClassName { get; set; }
         public string PrimaryASMSiteNumber { get; set; }
         public int? ParentDistrictId { get; set; }
         public int? ParentSensitivityZoneId { get; set; }

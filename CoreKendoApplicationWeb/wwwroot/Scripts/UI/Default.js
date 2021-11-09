@@ -264,6 +264,7 @@ function createResourceGrid() {
         detailInit: function (element) {
             alert("detail init....");
             alert(element.data.TemporalClasses);
+            alert(element.data.PrimaryASMSiteNumber);
             var ID = element.data.id;
             var resourceId = element.data.ResourceId.toString().trim().toLowerCase();
             var detailRow = element.detailRow;
@@ -275,7 +276,7 @@ function createResourceGrid() {
 
                 $("#resourcedesc" + resourceId).val(element.data.ResourceDescription);
                 $("#resourceclasslist" + resourceId).val(element.data.ResourceClassName);
-                $("#primarysite" + resourceId).val(element.data.PrimaryASMSite);
+                $("#primarysite" + resourceId).val(element.data.PrimaryASMSiteNumber);
             }
             detailRow.find(".resourcetabstrip")[0].id = "resourcetabstrip" + resourceId;
             $("#resourcetabstrip" + resourceId).kendoTabStrip({

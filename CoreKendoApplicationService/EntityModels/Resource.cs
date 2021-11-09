@@ -14,11 +14,11 @@ namespace CoreKendoApplicationService.EntityModels
         public string ResourceName { get; set; }
         public string ResourceDescription { get; set; }
 
-        public int ResourceTypeId { get; set; }
-        public int ResourceClassId { get; set; }
-        public int ResourceAreaId { get; set; }
-        public int DesignationStatusId { get; set; }
-        public int YearDesignated { get; set; }
+        public int? ResourceTypeId { get; set; }
+        public int? ResourceClassId { get; set; }
+        public int? ResourceAreaId { get; set; }
+        public int? DesignationStatusId { get; set; }
+        public int? YearDesignated { get; set; }
         public string GISId { get; set; }
 
         public DateTime? ModifiedDate { get; set; }

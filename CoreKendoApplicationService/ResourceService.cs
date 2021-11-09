@@ -16,62 +16,101 @@ namespace CoreKendoApplicationService
             using (var context = new Context())
             {
 
-                //Method syntax for Left Outer Joins
-                ResourceList = context.Resources                                    //r = Resources
-                    .GroupJoin(
-                        context.ResourceTypes, 
-                        r => r.ResourceTypeId, 
-                        t => t.ResourceTypeId, 
-                        (r, t) => new { r, t })                                     //t = ResourceTypes
-                    .SelectMany(
-                        rt => rt.t.DefaultIfEmpty(), 
-                        (r, t) => new { r, t })
+                ResourceList = (from rm in context.Resources
+                                join rt in context.ResourceTypes on
+                                     rm.ResourceTypeId equals rt.ResourceTypeId into typeJoin
+                                from rt in typeJoin.DefaultIfEmpty()
+                                join ds in context.DesignationStatuses on
+                                     rm.DesignationStatusId equals ds.DesignationStatusId into statusJoin
+                                from ds in statusJoin.DefaultIfEmpty()
+                                join rc in context.ResourceClasses on
+                                     rm.ResourceClassId equals rc.Id into classJoin
+                                from rc in classJoin.DefaultIfEmpty()
+                                select new ResourceRow()
+                                {
+                                    ResourceId = rm.ResourceId,
+                                    ResourceName = rm.ResourceName,
+                                    YearDesignated = rm.YearDesignated,
+                                    ResourceTypeId = rm.ResourceTypeId,
+                                   // ResourceTypeName = rt.ResourceTypeName,
+                                    DesignationStatusId = rm.DesignationStatusId,
+                                   // DesignationStatusName = ds.DesignationStatusName,
+                                    GISId = rm.GISId,
+                                    ModifiedDate = rm.ModifiedDate,
 
-                    .GroupJoin(
-                        context.ResourceClasses, 
-                        rt => rt.r.r.ResourceClassId, 
-                        c => c.Id, 
-                        (r, c) => new { r, c })                                     //c = ResourceClasses
-                    .SelectMany(
-                        rtc => rtc.c.DefaultIfEmpty(), 
-                        (r, c) => new { r, c })  
+                                    ResourceDescription = rm.ResourceDescription,
+                                    ResourceClassId = rm.ResourceClassId,
 
-                    .GroupJoin(
-                        context.DesignationStatuses,
-                        rtcs => rtcs.r.r.r.r.DesignationStatusId, 
-                        s => s.DesignationStatusId,                                 //s = DesignationStatuses
-                        (r, s) =>  new { r, s }) 
-                    .SelectMany(
-                        rtcs => rtcs.s.DefaultIfEmpty(),
-                        (r, s) =>  new ResourceRow()
+                                    PrimaryASMSiteNumber = rm.PrimaryASMSiteNumber,
 
-                    {
-                        ResourceId = r.r.r.r.r.r.ResourceId,
-                        ResourceName = r.r.r.r.r.r.ResourceName,
-                        YearDesignated = r.r.r.r.r.r.YearDesignated,
-                        ResourceTypeId = r.r.r.r.t.ResourceTypeId,
-                        ResourceTypeName = r.r.r.r.t.ResourceTypeName,
-                        DesignationStatusId = s.DesignationStatusId,
-                        DesignationStatusName = s.DesignationStatusName,
-                        GISId = r.r.r.r.r.r.GISId,
-                        ModifiedDate = r.r.r.r.r.r.ModifiedDate,
+                                    ParentDistrictId = rm.ParentDistrictId,
+                                    ParentSensitivityZoneId = rm.ParentSensitivityZoneId
 
-                        ResourceDescription = r.r.r.r.r.r.ResourceDescription,
 
-                        PrimaryASMSiteNumber = r.r.r.r.r.r.PrimaryASMSiteNumber,
+                                }).ToList();
 
-                        ParentDistrictId = r.r.r.r.r.r.ParentDistrictId,
-                        ParentSensitivityZoneId = r.r.r.r.r.r.ParentSensitivityZoneId
+                return ResourceList;
 
-                    })
-                    .OrderBy(o => o.ResourceName).ToList();
             }
-            //ClassList.Add(1);
-            //ClassList.Add(2);
-              ResourceList[0].TemporalClasses = new List<int> { 1, 2 };
-            //  ResourceList[0].ResourceClasses = ClassList;
-            //  ResourceList[3].ResourceClassIds = ClassList;
-            return ResourceList;
+
+            //using (var context = new Context())
+            //{
+
+            //    //Method syntax for Left Outer Joins
+            //    ResourceList = context.Resources                                    //r = Resources
+            //        .GroupJoin(
+            //            context.ResourceTypes,
+            //            r => r.ResourceTypeId,
+            //            t => t.ResourceTypeId,
+            //            (r, t) => new { r, t })                                     //t = ResourceTypes
+            //        .SelectMany(rt => rt.t.DefaultIfEmpty(),
+            //            (r, t) => new
+            //            { rm = r.r, rt = t })
+            //        .GroupJoin(
+            //            context.ResourceClasses,
+            //            rec => rec.rm.ResourceClassId,
+            //            c => c.Id,
+            //            (r, c) => new
+            //            { r, c })                                                       //c = ResourceClasses
+            //        .SelectMany(
+            //            rec => rec.c.DefaultIfEmpty(),
+            //            (r, c) => new
+            //            { rm = r.r.rm, rc = c })
+            //        .GroupJoin(
+            //            context.DesignationStatuses,
+            //            rec => rec.rm.DesignationStatusId,
+            //            ds => ds.DesignationStatusId,                                 //s = DesignationStatuses
+            //            (rm, ds) => new { rm.rm, ds })
+            //        .SelectMany(
+            //            rec => rec.ds.DefaultIfEmpty(),
+            //            (rec, ds) => new ResourceRow()
+            //            {
+            //                ResourceId = rec.rm.ResourceId,
+            //                ResourceName = rec.rm.ResourceName,
+            //                YearDesignated = rec.rm.YearDesignated,
+            //                ResourceTypeId = rec.rm.ResourceTypeId,
+            //                ResourceTypeName = rec.rt.ResourceTypeName,
+            //                DesignationStatusId = rec.rm.DesignationStatusId,
+            //                DesignationStatusName = ds.DesignationStatusName,
+            //                GISId = rec.rm.GISId,
+            //                ModifiedDate = rec.rm.ModifiedDate,
+
+            //                ResourceDescription = rec.rm.ResourceDescription,
+
+            //                PrimaryASMSiteNumber = rec.rm.PrimaryASMSiteNumber,
+
+            //                ParentDistrictId = rec.rm.ParentDistrictId,
+            //                ParentSensitivityZoneId = rec.rm.ParentSensitivityZoneId
+
+            //            })
+            //        .OrderBy(o => o.ResourceName).ToList();
+            //}
+            ////ClassList.Add(1);
+            ////ClassList.Add(2);
+            //ResourceList[0].TemporalClasses = new List<int> { 1, 2 };
+            ////  ResourceList[0].ResourceClasses = ClassList;
+            ////  ResourceList[3].ResourceClassIds = ClassList;
+            //return ResourceList;
         }
 
 
