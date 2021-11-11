@@ -24,6 +24,7 @@ namespace CoreKendoApplicationService
         public string ResourceClassName { get; set; }
         public string PrimaryASMSiteNumber { get; set; }
         public int? ParentDistrictId { get; set; }
+        public string ParentDistrictName { get; set; }
         public int? ParentSensitivityZoneId { get; set; }
         public int? ParentResourceAreaId { get; set; }
         public string ResourceFolderPath { get; set; }

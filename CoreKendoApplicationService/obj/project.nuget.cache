@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W+uBDxMpYij4hrW0ohxMIPgvkKV3OKgmP68m57PnArewGYKvoi9471afuWJlBk1+Sz7lwLU9vx1/MlkrPYXRmw==",
+  "dgSpecHash": "/6d6adKMgH6C5CdXABlWNgqSENW/BOtOS/i8SfY+2B2pTqM1dk31k6+AQlGgoss65G7mYdoKdZFogUr1FA+FDg==",
   "success": true,
-  "projectFilePath": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj",
+  "projectFilePath": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\u142440\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\u142440\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

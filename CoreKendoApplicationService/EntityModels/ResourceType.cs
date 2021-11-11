@@ -8,10 +8,11 @@ namespace CoreKendoApplicationService.EntityModels
     {
         [Key]
         [Column("ResourceTypeId")]
-        public int ResourceTypeId { get; set; }
+        public int Id { get; set; }
 
         [StringLength(50)]
-        public string ResourceTypeName { get; set; }
+        [Column("ResourceTypeName")]
+        public string Name { get; set; }
 
         [StringLength(500)]
         public string ResourceTypeDescription { get; set; }

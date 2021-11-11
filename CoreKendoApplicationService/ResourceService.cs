@@ -18,32 +18,37 @@ namespace CoreKendoApplicationService
 
                 ResourceList = (from rm in context.Resources
                                 join rt in context.ResourceTypes on
-                                     rm.ResourceTypeId equals rt.ResourceTypeId into typeJoin
+                                     rm.ResourceTypeId equals rt.Id into typeJoin
                                 from rt in typeJoin.DefaultIfEmpty()
                                 join ds in context.DesignationStatuses on
-                                     rm.DesignationStatusId equals ds.DesignationStatusId into statusJoin
+                                     rm.DesignationStatusId equals ds.Id into statusJoin
                                 from ds in statusJoin.DefaultIfEmpty()
                                 join rc in context.ResourceClasses on
                                      rm.ResourceClassId equals rc.Id into classJoin
                                 from rc in classJoin.DefaultIfEmpty()
+                                join pd in context.ParentDistricts on
+                                     rm.ResourceClassId equals pd.Id into districtJoin
+                                from pd in districtJoin.DefaultIfEmpty()
                                 select new ResourceRow()
                                 {
                                     ResourceId = rm.ResourceId,
                                     ResourceName = rm.ResourceName,
                                     YearDesignated = rm.YearDesignated,
                                     ResourceTypeId = rm.ResourceTypeId,
-                                   // ResourceTypeName = rt.ResourceTypeName,
+                                    ResourceTypeName = rt.Name,
                                     DesignationStatusId = rm.DesignationStatusId,
-                                   // DesignationStatusName = ds.DesignationStatusName,
+                                    DesignationStatusName = ds.Name,
                                     GISId = rm.GISId,
                                     ModifiedDate = rm.ModifiedDate,
 
                                     ResourceDescription = rm.ResourceDescription,
                                     ResourceClassId = rm.ResourceClassId,
+                                    ResourceClassName = rc.Name,
 
                                     PrimaryASMSiteNumber = rm.PrimaryASMSiteNumber,
 
                                     ParentDistrictId = rm.ParentDistrictId,
+                                    ParentDistrictName = pd.Name,
                                     ParentSensitivityZoneId = rm.ParentSensitivityZoneId
 
 
@@ -113,6 +118,17 @@ namespace CoreKendoApplicationService
             //return ResourceList;
         }
 
+        public List<ResourceType> GetResourceTypes()
+        {
+            List<ResourceType> ResourceTypes;
+
+            using (var context = new Context())
+            {
+                ResourceTypes = context.ResourceTypes.OrderByDescending(o => o.Id).ToList();
+            }
+
+            return ResourceTypes;
+        }
 
         public List<ResourceClass> GetResourceClasses()
         {
@@ -124,6 +140,30 @@ namespace CoreKendoApplicationService
             }
 
             return ResourceClasses;
+        }
+
+        public List<DesignationStatus> GetDesignationStatuses()
+        {
+            List<DesignationStatus> DesignationStatuses;
+
+            using (var context = new Context())
+            {
+                DesignationStatuses = context.DesignationStatuses.OrderByDescending(o => o.Id).ToList();
+            }
+
+            return DesignationStatuses;
+        }
+
+        public List<ParentDistrict> GetParentDistricts()
+        {
+            List<ParentDistrict> ParentDistricts;
+
+            using (var context = new Context())
+            {
+                ParentDistricts = context.ParentDistricts.OrderByDescending(o => o.Id).ToList();
+            }
+
+            return ParentDistricts;
         }
 
         //public List<ResourceClass> GetResourceClasses()

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cjNEvaicEVZwMPcQsP8bjb++oEmTjam6NdXp0pTkx0vNtnQNmO0FlTFGXF41a5Mcsz+S8aOS+teIeZTmAqcZNA==",
+  "dgSpecHash": "mxSvi+8rahhR8qKaw68SW+FnGRZZ5MAHM7+fQ+E8kV74Gy0G40sc7Gm34glv+UvO2Of2Fp+ujnCbyF446NZoLg==",
   "success": true,
-  "projectFilePath": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationWeb\\CoreKendoApplicationWeb.csproj",
+  "projectFilePath": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationWeb\\CoreKendoApplicationWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\u142440\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",
     "C:\\Users\\u142440\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

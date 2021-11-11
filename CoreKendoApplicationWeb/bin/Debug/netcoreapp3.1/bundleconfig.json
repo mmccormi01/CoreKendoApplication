@@ -25,7 +25,7 @@
     "inputFiles": [
       "wwwroot/Scripts/UI/Site.js",
       "wwwroot/Scripts/UI/Default.js",
-      "wwwroot/Scripts/GoogleAnalytics.js",
+    //  "wwwroot/Scripts/GoogleAnalytics.js",
       "wwwroot/Scripts/PCBrandingStandards.js",
       "wwwroot/Scripts/PCDevBanner.js"
     ],

@@ -17,7 +17,12 @@
          data-update-resource-url="@HttpUtility.UrlDecode(Url.Action("UpdateResource", "api/Resource"))"
          data-create-resource-url="@HttpUtility.UrlDecode(Url.Action("CreateResource", "api/Resource"))"
          data-deactivate-resource-url="@HttpUtility.UrlDecode(Url.Action("DeactivateResource", "api/Resource"))"
-         data-read-classes-url="@HttpUtility.UrlDecode(Url.Action("GetResourceClasses", "api/Resource"))"></div>
+         data-read-type-url="@HttpUtility.UrlDecode(Url.Action("GetResourceTypes", "api/Resource"))"
+         data-read-class-url="@HttpUtility.UrlDecode(Url.Action("GetResourceClasses", "api/Resource"))"
+         data-read-status-url="@HttpUtility.UrlDecode(Url.Action("GetDesignationStatuses", "api/Resource"))"
+
+         data-read-district-url="@HttpUtility.UrlDecode(Url.Action("GetParentDistricts", "api/Resource"))"
+         data-read-temporal-classes-url="@HttpUtility.UrlDecode(Url.Action("GetTemporalClasses", "api/Resource"))"></div>
     <br />
     <!--End Kendo Grid-->
     <!--TEMPLATES-->
@@ -42,43 +47,29 @@
                     @*<button class="reportbtn btn btn-primary pull-right">Generate Report</button>*@
                     @*<label for="resourcedetails" class="h3">PCR Administration</label>*@
                     <div class="container-fluid resourcedetails">
-                        @*<div class="col-xs-5">
-                            <div class="row">
-                                <label>Resource Name</label>
-                                <input class="resourcename k-input k-textbox pull-right" />
-                                <label>Resource Type</label>
-                                <input class="k-input k-textbox pull-right" />
-                                <label>GIS ID</label>
-                                <input class="k-input k-textbox pull-right" />
-                            </div>
-                            <div class="row"><label>Project Type</label><input class="resourcetypelist pull-right" /></div>
-                        </div>*@
-                        <div class="col-xs-7">
+                        <div class="col-xs-6">
                             <div class="row"><label>Description</label><input class="resourcedesc pull-right" /></div>
-                            <div class="row"><label>Resource Class(es)</label><input class="resourceclasslist pull-right" /></div>
+                            <div class="row"><label>Resource Class</label><input class="resourceclasslist pull-right" /></div>
                             <div class="row"><label>Primary ASM Site No.</label><input class="primarysite pull-right" /></div>
-
-                            @*<div class="row"><label>Other Site Nos.</label><input class="primarysite pull-right" /></div>
-                            <div class="row"><label>Parent District</label><input class="gisid pull-right" /></div>
-                            <div class="row"><label>Sensitivity Zone</label><input class="modified pull-right" /></div>*@
-                            @*<div class="row">
-                                <label>Fiscal Year (Closed)</label>
-                                <input class="fiscalYearInput k-input k-textbox pull-right" name="FiscalYear" hidden />
-                                <br /><b><span style="background-color:\\#ffffdb;" class="fiscalYearError k-invalid-msg small" data-for="FiscalYear" hidden><span style="color:crimson">*</span>Fiscal Year format must be \\#\\#\\#\\#-\\#\\#\\#\\# or PENDING</span></b>
-                                <p class="fiscalYearText pull-right" style="margin-top:8px;"></p>
-                            </div>*@
-                            @*<div class="row">
-                                <label>Link to Comments/Clearance Document</label>
-                                <input class="clearanceDocPath k-input k-textbox" hidden />
-                                <a id="clearanceDocLink" class="clearanceDocLink"></a>
-                                <span id="copied"></span>
-                            </div>*@
+                            <div class="row"><label>Other Site Nos.</label><input class="primarysite pull-right" /></div>
+                            <div class="row"><label>Parent District</label><input class="parentdistrict pull-right" /></div>
+                            <div class="row"><label>Parent Sensitivity Zone</label><input class="sensitivityzone pull-right" /></div>
+                            <div class="row"><label>Parent Resource Area</label><input class="resourcearea pull-right" /></div>
                         </div>
-                        @*<div class="col-xs-11 text-center" style="margin-top:15px;">
+                        @*<div class="col-xs-1">
+                            <div class="row"> anything </div>
+                        </div>*@
+                        <div class="col-xs-5">
+                            <div class="row"><label>&nbsp Temporal Period(s)</label><input class="temporalperiods pull-right" /></div>
+                            <div class="row"><label>&nbsp Historic Function(s)</label><input class="historicfunctions pull-right" /></div>
+                            <div class="row"><label>&nbsp Architectural Style(s)</label><input class="architecturalstyles pull-right" /></div>
+                            <div class="row"><label>&nbsp Folder</label><input class="folderlocation pull-right" /></div>
+                        </div>
+                        <div class="col-xs-11 text-center" style="margin-top:15px;">
                             <small>
                                 <b>Last Modified:</b> #=kendo.toString(kendo.parseDate(ModifiedDate), 'MM-dd-yyyy h:m tt')#
                             </small>
-                        </div>*@
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -127,6 +118,29 @@
                 </div>
             </div>
     </script>
+
+    <script id="autotemplate" type="text/x-kendo-template">
+        <span style="#
+        if (!Active)
+            {
+                # color: \\#D8D8DB; #
+            }
+        #"
+              class="k-icon#
+        if (!Active)
+            {
+              # k-i-check-outline #
+            } else
+            {
+              # k-i-check-circle text-success #
+            }
+        #">
+        </span>
+        <span style="margin-right:5px;">
+            #: Name #
+        </span>
+    </script>
+
     <script id="dropDownTemplate" type="text/x-kendo-template">
         @*<span class="#: !Active ? 'k-state-disabled': ''#">
             #: Name #

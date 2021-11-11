@@ -114,15 +114,51 @@ namespace CoreKendoApplicationWeb
 
             //ResourceService.SetResourceActiveStatus(ResourceID, User.Identity.Name, false);
         }
-        private string ConvertListToJson(List<ResourceRow> resourceRows)
+
+        [HttpGet]
+        [Route("GetResourceTypes")]
+        public List<ResourceType> GetResourceTypes()
         {
+            LogHelper.Debug("Requesting Resource Row Data from Service.");
+            return ResourceService.GetResourceTypes();
+
+        }
+
+        [HttpGet]
+        [Route("GetResourceClasses")]
+        public List<ResourceClass> GetResourceClasses()
+        {
+            LogHelper.Debug("Requesting Resource Row Data from Service.");
+            return ResourceService.GetResourceClasses();
+
+        }
+
+        [HttpGet]
+        [Route("GetDesignationStatuses")]
+        public List<DesignationStatus> GetDesignationStatuses()
+        {
+            LogHelper.Debug("Requesting Resource Row Data from Service.");
+            return ResourceService.GetDesignationStatuses();
+
+        }
+
+
+        [HttpGet]
+        [Route("GetParentDistricts")]
+        public List<ParentDistrict> GetParentDistricts()
+        {
+            LogHelper.Debug("Requesting Resource Row Data from Service.");
+            return ResourceService.GetParentDistricts();
+
+        }
+        private string ConvertListToJson(List<ResourceRow> resourceRows)
+        { 
             //Array jArr = new JArray();
             JObject jobj = new JObject();
             List<string> jString = new List<string>();
 
             foreach (ResourceRow row in resourceRows)
             {
-
                 jobj = new JObject(
                     new JProperty("ResourceId", row.ResourceId),
                     new JProperty("ResourceName", row.ResourceName),

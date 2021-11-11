@@ -8762,11 +8762,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationWeb\\CoreKendoApplicationWeb.csproj",
+      "projectUniqueName": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationWeb\\CoreKendoApplicationWeb.csproj",
       "projectName": "CoreKendoApplicationWeb",
-      "projectPath": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationWeb\\CoreKendoApplicationWeb.csproj",
+      "projectPath": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationWeb\\CoreKendoApplicationWeb.csproj",
       "packagesPath": "C:\\Users\\u142440\\.nuget\\packages\\",
-      "outputPath": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationWeb\\obj\\",
+      "outputPath": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -8788,8 +8788,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj": {
-              "projectPath": "E:\\Wip\\Professional Development\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj"
+            "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj": {
+              "projectPath": "E:\\Wip\\GIT\\CoreKendoApplication\\CoreKendoApplicationService\\CoreKendoApplicationService.csproj"
             }
           }
         }
