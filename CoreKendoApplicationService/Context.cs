@@ -26,7 +26,7 @@ namespace CoreKendoApplicationService
             }
         }
 
-        //EF Objects
+        //Add EF Objects
         public DbSet<Resource> Resources { get; set; }
         public DbSet<ResourceClass> ResourceClasses { get; set; }
         public DbSet<ResourceType> ResourceTypes { get; set; }
