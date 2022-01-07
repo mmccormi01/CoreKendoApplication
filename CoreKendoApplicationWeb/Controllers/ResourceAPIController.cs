@@ -151,6 +151,15 @@ namespace CoreKendoApplicationWeb
             return ResourceService.GetParentDistricts();
 
         }
+
+        [HttpGet]
+        [Route("GetParentParentSensitivityZone")]
+        public List<ParentSensitivityZone> GetParentParentSensitivityZone()
+        {
+            LogHelper.Debug("Requesting Resource Row Data from Service.");
+            return ResourceService.GetParentParentSensitivityZone();
+
+        }
         private string ConvertListToJson(List<ResourceRow> resourceRows)
         { 
             //Array jArr = new JArray();

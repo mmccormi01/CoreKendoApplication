@@ -24,7 +24,7 @@
     "outputFileName": "wwwroot/Scripts/brandingJS.min.js",
     "inputFiles": [
       "wwwroot/Scripts/UI/Site.js",
-      "wwwroot/Scripts/UI/Default.js",
+      "wwwroot/Scripts/UI/Resource.js",
     //  "wwwroot/Scripts/GoogleAnalytics.js",
       "wwwroot/Scripts/PCBrandingStandards.js",
       "wwwroot/Scripts/PCDevBanner.js"

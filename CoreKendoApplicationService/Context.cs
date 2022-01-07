@@ -32,5 +32,6 @@ namespace CoreKendoApplicationService
         public DbSet<ResourceType> ResourceTypes { get; set; }
         public DbSet<DesignationStatus> DesignationStatuses { get; set; }
         public DbSet<ParentDistrict> ParentDistricts { get; set; }
+        public DbSet<ParentSensitivityZone> ParentSensitivityZone { get; set; }
     }
 }

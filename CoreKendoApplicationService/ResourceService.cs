@@ -29,6 +29,9 @@ namespace CoreKendoApplicationService
                                 join pd in context.ParentDistricts on
                                      rm.ResourceClassId equals pd.Id into districtJoin
                                 from pd in districtJoin.DefaultIfEmpty()
+                                join ps in context.ParentSensitivityZone on
+                                rm.ResourceClassId equals ps.Id into sensitivityJoin
+                                from ps in sensitivityJoin.DefaultIfEmpty()
                                 select new ResourceRow()
                                 {
                                     ResourceId = rm.ResourceId,
@@ -49,8 +52,8 @@ namespace CoreKendoApplicationService
 
                                     ParentDistrictId = rm.ParentDistrictId,
                                     ParentDistrictName = pd.Name,
-                                    ParentSensitivityZoneId = rm.ParentSensitivityZoneId
-
+                                    ParentSensitivityZoneId = rm.ParentSensitivityZoneId,
+                                    ParentSensitivityZoneName = ps.Name
 
                                 }).ToList();
 
@@ -164,6 +167,18 @@ namespace CoreKendoApplicationService
             }
 
             return ParentDistricts;
+        }
+
+        public List<ParentSensitivityZone> GetParentParentSensitivityZone()
+        {
+            List<ParentSensitivityZone> ParentSensitivityZone;
+
+            using (var context = new Context())
+            {
+                ParentSensitivityZone = context.ParentSensitivityZone.OrderByDescending(o => o.Id).ToList();
+            }
+
+            return ParentSensitivityZone;
         }
 
         //public List<ResourceClass> GetResourceClasses()
